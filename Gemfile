@@ -37,7 +37,7 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 gem 'puma'
 
