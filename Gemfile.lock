@@ -230,6 +230,7 @@ DEPENDENCIES
   capistrano
   coffee-rails (~> 3.2.1)
   devise
+  execjs
   font-awesome-rails
   haml
   haml-rails
