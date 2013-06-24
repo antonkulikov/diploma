@@ -42,7 +42,6 @@ end
 
 group :production do
   gem 'therubyracer'
-  gem 'execjs'
 end
 
 gem 'puma'
