@@ -31,18 +31,13 @@ group :assets do
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 
-  gem 'jquery-rails'
-  gem 'jquery-ui-rails'
-
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
-
   gem 'font-awesome-rails'
 end
 
-group :production do
-  gem 'therubyracer'
-end
+gem 'less-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'twitter-bootstrap-rails'
 
 gem 'puma'
 
