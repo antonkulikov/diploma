@@ -40,6 +40,11 @@ group :assets do
   gem 'font-awesome-rails'
 end
 
+group :production do
+  gem 'therubyracer'
+  gem 'execjs'
+end
+
 gem 'puma'
 
 # Deploy with Capistrano
