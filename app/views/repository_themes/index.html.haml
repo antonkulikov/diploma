@@ -1,0 +1,24 @@
+%h1 Репозиторий тем
+
+%div{:id => 'discipline-themes', 'data-url' => "#{repository_themes_path}"}
+
+%table{:class => 'table table-stripped table-condensed table-bordered'}
+  %thead
+    %tr
+      %th{:style => 'width: 70%;'} Дисциплина
+      %th{:style => 'width: 13%; text-align: center;'} Колличество тем
+      %th{:style => 'width: 17%; text-align: center;'} Колличество вопросов
+  %tbody
+    - @disciplines.each do |discipline|
+      - unless discipline.repository_themes.blank?
+        %tr
+          %td= link_to discipline.name, '', :class => 'discipline', 'data-params' => "discipline_id=#{discipline.id}"
+          %td{:style => 'text-align: center;'}= discipline.repository_themes.size
+          %td{:style => 'text-align: center;'}
+            - count = 0
+            - discipline.repository_themes.each {|repository_theme| count += repository_theme.count}
+            = count
+
+= link_to "Новая тема", new_repository_theme_path, :class => 'btn btn-primary'
+
+.free-space

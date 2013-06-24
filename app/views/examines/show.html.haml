@@ -1,0 +1,50 @@
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.name") + ":"
+  %b= @examine.name
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.necessary") + ":"
+  %b= @examine.necessary ? "Да" : "Нет"
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.blocked") + ":"
+  %b= @examine.blocked ? "Да" : "Нет"
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.num_try") + ":"
+  %b= @examine.num_try
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.period") + ":"
+  %b= @examine.period
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.test_type") + ":"
+  %b= @examine.test_type
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.w_key") + ":"
+  %b= @examine.w_key ? "Да" : "Нет"
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.ext_access") + ":"
+  %b= @examine.ext_access ? "Да" : "Нет"
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.msiu_access") + ":"
+  %b= @examine.msiu_access ? "Да" : "Нет"
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.scheduled_date") + ":"
+  - if @examine.scheduled_date
+    %b= l @examine.scheduled_date, :format => :long
+%p
+  %span{:class => "label"}= t("activerecord.attributes.examine.scheduled_pair") + ":"
+  %b= @examine.scheduled_pair
+%p
+  %span{:class => "label"} Сценарии:
+  - @examine.scripts.each do |script|
+    %b= script.name
+    %span{:class => "label"} Темы:
+    - script.script_themes.each do |script_theme|
+      %b= script_theme.name
+      %span{:class => "label"} Подтемы:
+      %b= script_theme.script_sub_themes.map{|sst| sst.name}
+  
+
+.form-actions
+  = link_to "Назад", examines_path, :class => 'btn'
+  - if @current_user && @current_user.admin?
+    = link_to "Редактировать", edit_examine_path(@examine), :class => 'btn'
+    = link_to "Удалить", examine_path(@examine), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Вы уверены?")}", :class => 'btn btn-danger'

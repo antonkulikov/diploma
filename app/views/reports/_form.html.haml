@@ -1,0 +1,79 @@
+%fieldset
+  %legend
+    = t "controllers.#{controller_name}.#{action_name}"
+    - if @examine.errors.any?
+      .alert.alert-error
+        %h6 При сохранении произошли ошибки
+  
+  = hidden_field_tag 'examine[block_ids][]', params[:block], :id => "examine_block_ids_#{params[:block]}"
+  %table
+    %tbody
+      %tr
+        %td.first-row
+          .control-group
+            = f.label :name, :class => 'control-label'
+            .controls
+              = f.text_field :name, :class => 'text_field'
+        %td.second-row
+          .control-group
+            = f.label :num_try, :class => 'control-label'
+            .controls
+              = f.number_field :num_try, :class => 'number_field'
+      %tr
+        %td
+          .control-group
+            = f.label :period, :class => 'control-label'
+            .controls
+              .input-append
+                = f.number_field :period, :class => 'span2-my'
+                %span{:class => 'add-on'}> мин.
+        %td
+          .control-group
+            = f.label :test_type, :class => 'control-label'
+            .controls
+              - index = 0
+              = f.select :test_type, Examine::EXAMINE_TYPES.map{|type| [type, index += 1]}, :class => 'select'
+      %tr
+        %td
+          .control-group
+            = f.label :necessary, :class => 'control-label'
+            .controls
+              = f.check_box :necessary, :class => 'check_box'
+        %td
+          .control-group
+            = f.label :blocked, :class => 'control-label'
+            .controls
+              = f.check_box :blocked, :class => 'check_box'
+      %tr
+        %td
+          .control-group
+            = f.label :w_key, :class => 'control-label'
+            .controls
+              = f.check_box :w_key, :class => 'checkbox'
+        %td
+      %tr
+        %td
+          .control-group
+            = f.label :msiu_access, :class => 'control-label'
+            .controls
+              = f.check_box :msiu_access, :class => 'checkbox'
+        %td
+          .control-group
+            = f.label :ext_access, :class => 'control-label'
+            .controls
+              = f.check_box :ext_access, :class => 'checkbox'
+      %tr
+        %td
+          .control-group
+            = f.label :scheduled_date, :class => 'control-label'
+            .controls
+              = f.text_field :scheduled_date, {:id => 'datepicker'}
+        %td
+          .control-group
+            = f.label :scheduled_pair, :class => 'control-label'
+            .controls
+              = f.number_field :scheduled_pair, :class => 'number_field'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Отмена", examines_path, :class => 'btn'

@@ -1,0 +1,68 @@
+%fieldset
+  %legend
+    = t "controllers.#{controller_name}.#{action_name}"
+    - if @script.errors.any?
+      .alert.alert-error
+        %h6 При сохранении произошли ошибки
+  = hidden_field :examine, params[:examine]
+  %table{:id => 'mytable'}
+    %tbody
+      %tr
+        %td.first-row
+          .control-group
+            = f.label :name, "Название", :class => 'control-label'
+            .controls
+              = f.number_field :name, :class => 'number_field'
+        %td.second-row
+          .control-group
+            = f.label :redirect_page, "Страница перехода", :class => 'control-label'
+            .controls
+              = f.text_field :redirect_page, :class => 'text_field'
+      %tr
+        %td
+          .control-group
+            = f.label :time, "Время", :class => 'control-label'
+            .controls
+              %div{:class => 'input-append'}
+                = f.number_field :time, :class => 'span2-my'
+                %span{:class => 'add-on'}> мин.
+        %td
+          .control-group
+            = f.label :results, "Вывод результатов", :class => 'control-label'
+            .controls
+              %div{:class => 'btn-group', 'data-toggle' => 'buttons-checkbox'}
+                %button{:class => 'btn', :id => 'btn-themes'}Темы
+                = hidden_field_tag :results_themes, params[:results_themes], :id => 'results-themes'
+                %button{:class => 'btn', :id => 'btn-questions'}Вопросы
+                = hidden_field_tag :results_questions, params[:results_questions], :id => 'results-questions'
+                %button{:class => 'btn', :id => 'btn-detaled'}Детальный
+                = hidden_field_tag :results_detaled, params[:results_detaled], :id => 'results-detaled'
+      %tr
+        %td
+          .control-group
+            = f.label :blocked, "Заблокирован?", :class => 'control-label'
+            .controls
+              = f.check_box :blocked, :class => 'check_box'
+        %td
+          .control-group
+            = f.label :order_themes, "Сортировать темы?", :class => 'control-label'
+            .controls
+              = f.check_box :order_themes, :class => 'check_box'
+      %tr
+        %td
+          .control-group
+            = f.label :questions_to_pass, "Необходимо сдать вопросов", :class => 'control-label'
+            .controls
+              = f.number_field :questions_to_pass, :class => 'number_field'
+        %td
+          .control-group
+            = f.label :themes_to_pass, "Необходимо сдать тем", :class => 'control-label'
+            .controls
+              = f.number_field :themes_to_pass, :class => 'number_field'
+
+  = f.fields_for :script_themes do |builder|
+    = render "script_theme", :f => builder
+  .partial= link_to_add_fields "Добавить тему", f, :script_themes
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Отмена", scripts_path, :class => 'btn'

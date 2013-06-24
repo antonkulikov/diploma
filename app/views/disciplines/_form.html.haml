@@ -1,0 +1,17 @@
+%fieldset
+  %legend
+    = t "controllers.#{controller_name}.#{action_name}"
+    - if @discipline.errors.any?
+      .alert.alert-error
+        %h6 При сохранении произошли ошибки
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name
+  .control-group
+    = f.label :repository_theme_tokens, "Темы", :class => 'control-label'
+    .controls
+      = f.text_field :repository_theme_tokens, "data-pre"=>@discipline.repository_themes.map(&:attributes).to_json
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Отмена", disciplines_path, :class => 'btn'

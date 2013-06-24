@@ -1,0 +1,8 @@
+%span{:class => "label"}= t("activerecord.attributes.discipline.name", :default => t("activerecord.labels.name", :default => "Название")) + ":"
+%p= @discipline.name
+
+.form-actions
+  = link_to "Назад", disciplines_path, :class => 'btn'
+  - if @current_user && @current_user.admin?
+    = link_to "Редактировать", edit_discipline_path(@discipline), :class => 'btn'
+    = link_to "Удалить", discipline_path(@discipline), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Вы уверены?")}", :class => 'btn btn-danger'

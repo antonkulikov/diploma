@@ -1,0 +1,28 @@
+%h1 Список тестов
+- if @group
+  по дисциплинам для группы:
+  %b= @group.name
+- if @repository_theme
+  по теме:
+  %b= @repository_theme.name
+  %br
+  %br
+- if @disciplines
+  #accordion-examine.accordion
+    - @disciplines.each_with_index do |discipline, index|
+      - if discipline.blocks
+        - for block in discipline.blocks
+          - if block.examines
+            .accordion-group
+              %h5.accordion-heading= link_to discipline.name, "#accordion#{index+1}", :class => 'accordion-toggle', 'data-toggle' => 'collapse', 'data-parent' => '#accordion-examine'
+              %div{:class => 'accordion-body collapse', :id => "accordion#{index+1}"}
+                .accordion-inner
+                  = render 'examines', :examines => block.examines
+
+-else
+  = render 'examines', :examines => @examines
+
+
+= link_to "Новый тест", new_examine_path, :class => 'btn btn-primary'
+
+.free-space

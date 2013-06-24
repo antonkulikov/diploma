@@ -1,0 +1,37 @@
+%fieldset.partial
+  %legend
+    Тема
+    = link_to_remove_fields "Удалить", f
+  %table
+    %tbody
+      %tr
+        %td.first-row
+          .control-group
+            = f.label :name, "Название", :class => 'control-label'
+            .controls
+              = f.text_field :name, :class => 'text_field'
+        %td.second-row
+          .control-group
+            = f.label :repository_theme_name, "Репозиторий тем", :class => 'control-label'
+            .controls
+              = f.text_field :repository_theme_name, {:class => 'autocomplete-field', :onfocus => 'autocompleteField()'}
+      %tr
+        %td
+          .control-group
+            = f.label :questions_to_pass, "Необходимо сдать вопросов", :class => 'control-label'
+            .controls
+              = f.number_field :questions_to_pass, :class => 'number_field'
+        %td
+          .control-group
+            = f.label :subthemes_to_pass, "Необходимо сдать подтем", :class => 'control-label'
+            .controls
+              = f.number_field :subthemes_to_pass, :class => 'number_field'
+      %tr
+        %td
+          .control-group
+            = f.label :order_subthemes, "Сортировать подтемы", :class => 'control-label'
+            .controls
+              = f.check_box :order_subthemes, :class => 'check_box'
+        %td
+      
+  %div= link_to_add_fields "Добавить подтему", f, :script_sub_themes

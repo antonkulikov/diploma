@@ -13,9 +13,12 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 
+gem 'nested_form', :github => 'ryanb/nested_form'
+
 gem "state_machine"
 
 gem 'kaminari'
+gem 'russian'
 
 group :development do
   gem 'better_errors'
@@ -46,3 +49,5 @@ gem 'rvm-capistrano'
 group :test do
   gem 'turn', :require => false
 end
+
+gem 'rspec-rails', group: [:development, :test]

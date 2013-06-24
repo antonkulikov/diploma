@@ -1,0 +1,9 @@
+%ul{:class => 'my-sortable'}
+  - block.examines.each do |examine|
+    %li{:class => 'ui-state-default'}
+      - i = examine.scripts.size
+      - examine.scripts.each do |script|
+        = link_to script.name, script
+        - if i > 1
+          = ', '
+        - i -= 1

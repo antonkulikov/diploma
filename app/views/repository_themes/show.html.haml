@@ -1,0 +1,11 @@
+%span{:class => "label"}= t("activerecord.attributes.repository_theme.name", :default => t("activerecord.labels.name", :default => "Name")) + ":"
+%p= @repository_theme.name
+%span{:class => "label"}= t("activerecord.attributes.repository_theme.path", :default => t("activerecord.labels.path", :default => "Path")) + ":"
+%p= @repository_theme.path
+%span{:class => "label"}= t("activerecord.attributes.repository_theme.count", :default => t("activerecord.labels.count", :default => "Count")) + ":"
+%p= @repository_theme.count
+
+.form-actions
+  = link_to "Назад", repository_themes_path, :class => 'btn'
+  = link_to "Редактировать", edit_repository_theme_path(@repository_theme), :class => 'btn'
+  = link_to "Удалить", repository_theme_path(@repository_theme), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Вы уверены?")}", :class => 'btn btn-danger'

@@ -1,0 +1,30 @@
+- if @discipline
+  %h2 Отчет
+  %b по дисциплине: #{@discipline.name}
+  %br
+  %br
+  
+  #accordion-groups.accordion
+    - @discipline.blocks.each do |block|
+      -unless block.examines.blank?
+        - block.groups.each do |group|
+          .accordion-group
+            %h5.accordion-heading= link_to group.name, "#accordion#{group.id}", :class => 'accordion-toggle', 'data-toggle' => 'collapse', 'data-parent' => '#accordion-groups'
+            %div{:class => 'accordion-body collapse', :id => "accordion#{group.id}"}
+              .accordion-inner
+                = render 'group_report', :examines => block.examines, :students => @students
+- elsif @group
+  %h2 Отчет
+  %b по группе: #{@group.name}
+  %br
+  %br
+  
+  #accordion-disciplines.accordion
+    - @group.blocks.each do |block|
+      -unless block.examines.blank?
+        - discipline = block.discipline
+        .accordion-group
+          %h5.accordion-heading= link_to discipline.name, "#accordion#{discipline.id}", :class => 'accordion-toggle', 'data-toggle' => 'collapse', 'data-parent' => '#accordion-disciplines'
+          %div{:class => 'accordion-body collapse', :id => "accordion#{discipline.id}"}
+            .accordion-inner
+              = render 'group_report', :examines => block.examines, :students => @students

@@ -1,0 +1,107 @@
+h1 {margin-bottom: 10px;}
+h3 {margin-bottom: 10px;}
+.free-space {margin-bottom: 25px; clear: both;}
+td.actions, th.actions {width: 63px; vertical-align: middle;}
+td.id {width: 10px;}
+
+.sortable { list-style-type: none; margin: 0; padding: 0; }
+.sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.2em; height: 18px;}
+.sortable li span { position: absolute; margin-left: -1.3em; }
+
+.my-sortable { list-style-type: none; margin: 0; padding: 0; }
+.my-sortable li { margin: 0 3px 3px 3px; padding: 0.4em; font-size: 1.2em; height: 18px;}
+
+.span2-my {
+  width: 174px;
+}
+
+.span-my {
+  width: 100px;
+}
+
+.sortable li a.btn.btn-mini.btn-success.add-script, .sortable li a.add-script {
+  margin-top: -2px;
+  color: #fff;
+  float:right;
+}
+
+.sortable li a.add-script {
+  margin-top: 1px;
+}
+
+.container.center {width: 600px;}
+
+.sortable li span.link { margin: -2px 50px; }
+div.bottom {  }
+
+/*#autocomplete-field {width: 250px}*/
+
+hr.small {margin: 0; padding: 0;}
+
+.field_with_errors .message {
+	color: #dc143c;
+}
+
+.field_with_errors input {
+	border-color: #dc143c;
+}
+
+.field_with_errors select {
+	border-color: #dc143c;
+}
+
+fieldset.partial, div.partial {
+	margin-left: 35px;
+	margin-bottom: 1px;
+}
+
+.first-row {
+  width: 56%;
+  padding: 0;
+  margin: 0;
+}
+
+.second-row{
+  width: 44%;
+  padding: 0;
+  margin: 0;
+}
+
+td.second-row div.control-group, td.first-row div.control-group {
+  margin-bottom: 5px;
+}
+
+div.modal.hide.fade.new-examine {
+  height: 90%;
+  width: 74%;
+  left: 13%;
+  top: 5%;
+  margin: 0;
+  padding: 10px 35px 0 35px;
+}
+
+div.item {
+  margin-right: 25px;
+  margin-bottom: 25px;
+  float: left;
+}
+
+.left-row {
+  width:50%;
+}
+
+.right-row {
+}
+
+th.min {
+  width: 60px;
+}
+
+td.yes {
+  text-align: center;
+  background: #6d6;
+}
+td.no {
+  text-align: center;
+  background: #e66;
+}

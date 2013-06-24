@@ -1,0 +1,22 @@
+%h1 Группы
+
+%table{:class => "table table-striped table-bordered"}
+  %thead
+    %tr
+      %th= t "activerecord.attributes.group.name"
+      - if @current_user && @current_user.admin?
+        %th.actions Действия
+  %tbody
+    - @groups.each do |group|
+      %tr
+        %td= group.name
+
+        - if @current_user && @current_user.admin?
+          %td.actions
+            = link_to "<i class='icon-edit'></i>".html_safe, edit_group_path(group), :class => 'btn btn-mini', 'rel' => 'tooltip', 'title' => 'Редактировать'
+            = link_to "<i class='icon-trash icon-white'></i>".html_safe, group_path(group), :method => :delete, :confirm => "#{ t "web-app-theme.confirm"}", :class => 'btn btn-mini btn-danger', 'rel' => 'tooltip', 'title' => 'Удалить'
+
+- if @current_user && @current_user.admin?
+  = link_to "Новая группа", new_group_path, :class => 'btn btn-primary'
+
+.free-space

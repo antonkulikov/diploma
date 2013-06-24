@@ -1,0 +1,21 @@
+%fieldset
+  %legend
+    = t "controllers.#{controller_name}.#{action_name}"
+    - if @block.errors.any?
+      .alert.alert-error
+        %h6 При сохранении произошли ошибки
+  .control-group
+    = f.label :year, :class => 'control-label'
+    .controls
+      = f.text_field :year, :class => 'text_field'
+  .control-group
+    = f.label :discipline_name, "Дисциплина", :class => 'control-label'
+    .controls
+      = f.text_field :discipline_name, "data-discipline-id" => params[:discipline_id]
+  .control-group
+    = f.label :group_tokens, "Группы", :class => 'control-label'
+    .controls
+      = f.text_field :group_tokens, "data-pre" => @block.groups.map(&:attributes).to_json
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Отмена", blocks_path(:discipline => params[:discipline]), :class => 'btn'

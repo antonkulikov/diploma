@@ -1,0 +1,41 @@
+%table{:class => "table table-bordered"}
+  %thead
+    %tr
+      %th= t "activerecord.attributes.block.groups"
+      %th= t "activerecord.attributes.block.examines"
+      %th= t "activerecord.attributes.block.scripts"
+      - if @current_user && @current_user.admin?
+        %th.actions Действия
+  %tbody
+    - blocks.each do |block|
+      %tr
+        %td
+          = block.groups.map(&:name).join(', ')
+          %br
+          %div{:id => "addGroup_#{block.id}", :class => "modal hide fade", :style => 'display: none;'}
+            = render 'add_group_modal', :block => block
+          = link_to "<i class='icon-plus'></i> группу".html_safe, "#addGroup_#{block.id}", 'data-toggle' => 'modal', :class => 'btn btn-mini btn-success'
+        %td
+          %ul{:class => 'sortable', 'data-update-url' => "#{sort_examines_path}", 'data-block-id' => "#{block.id}"}
+            - block.examines.each do |examine|
+              %li{:class => 'my ui-state-default', :id => "examine_#{examine.id}"}
+                %span{:class => 'ui-icon ui-icon-arrowthick-2-n-s'}
+                = link_to examine.name, examine, :rel => 'tooltip', :title => "#{l examine.scheduled_date if examine.scheduled_date}"
+                = link_to "<i class='icon-plus'></i> сценарий".html_safe, new_script_path(:examine => examine), :class => 'btn btn-mini btn-success add-script'
+          %br
+          %div{:id => "addExamine_#{block.id}", :class => "modal hide fade", :style => 'display: none;'}
+            = render 'add_test_modal', :block => block
+          = link_to "<i class='icon-plus'></i> тесты".html_safe, "#addExamine_#{block.id}", 'data-toggle' => 'modal', :class => 'btn btn-mini btn-success'
+          = link_to "Создать новый тест".html_safe, "#newExamine_#{block.id}", 'data-toggle' => 'modal', :class => 'btn btn-mini btn-success'
+        %td
+          %div{:class => "scripts_#{block.id}", 'data-url' => "#{blocks_path}", 'data-params' => "block_id=#{block.id}"}
+            = render 'scripts', :block => block
+
+        - if @current_user && @current_user.admin?
+          %td.actions
+            = link_to "<i class='icon-edit'></i>".html_safe, edit_block_path(block), :class => 'btn btn-mini', :rel => 'tooltip', :title => 'Редактировать'
+            = link_to "<i class='icon-trash icon-white'></i>".html_safe, block_path(block), :method => :delete, :confirm => "#{t "web-app-theme.confirm"}", :class => 'btn btn-mini btn-danger', 'my-rel' => 'tooltip', :title => 'Удалить'
+
+- blocks.each do |block|
+  %div{:id => "newExamine_#{block.id}", :class => "modal hide fade new-examine"}
+    = render 'new_examine_modal', :block => block

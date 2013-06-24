@@ -1,0 +1,22 @@
+%table{:class => "table table-striped table-bordered"}
+  %thead
+    %tr
+      %th= t "activerecord.attributes.examine.name"
+      %th= t "activerecord.attributes.examine.scripts"
+      %th= t "activerecord.attributes.examine.blocks"
+      - if @current_user && @current_user.admin?
+        %th.actions Действия
+  %tbody
+    - examines.each do |examine|
+      %tr
+        %td= link_to examine.name, examine_path(examine)
+        %td= examine.scripts.map(&:name).join(', ')
+        %td
+          - examine.blocks.each_with_index do |block, i|
+            = "Блок #{i+1}: "
+            = block.groups.map(&:name).join(', ')
+            %br
+        - if @current_user && @current_user.admin?
+          %td.actions
+            = link_to "<i class='icon-edit'></i>".html_safe, edit_examine_path(examine), :class => 'btn btn-mini', 'rel' => 'tooltip', 'title' => 'Редактировать'
+            = link_to "<i class='icon-trash icon-white'></i>".html_safe, examine_path(examine), :method => :delete, :confirm => "#{ t "web-app-theme.confirm" }", :class => 'btn btn-mini btn-danger', 'rel' => 'tooltip', 'title' => 'Удалить'

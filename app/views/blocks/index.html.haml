@@ -1,0 +1,29 @@
+%h1 Блоки групп
+- if @discipline
+  по дисциплине
+  %b= @discipline.name
+  #blocks= render 'blocks', :blocks => @blocks
+  
+  = link_to "Новый блок", new_block_path(:discipline_id => params[:discipline_id]), :class => 'btn btn-primary'
+  
+- if @groups
+  %table{:class => 'table table-bordered'}
+    %thead
+      %tr
+        %th Группа
+        %th Блоки
+    %tbody
+      - @groups.each do |group|
+        %tr
+          %td= link_to group.name, examines_path(:group_id => group.id)
+          %td
+            - i = group.blocks.count
+            - group.blocks.each_with_index do |block, index|
+              = "Блок #{index+1} ("
+              = link_to block.discipline.name, blocks_path(:discipline_id => block.discipline.id)
+              = ")"
+              - if i > 1
+                = ','
+              - i -= 1
+
+.free-space

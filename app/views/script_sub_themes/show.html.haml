@@ -1,0 +1,19 @@
+%label{:class => "label"}= t("activerecord.attributes.script_sub_theme.name", :default => t("activerecord.labels.name", :default => "Name")) + ":"
+%p= @script_sub_theme.name
+%label{:class => "label"}= t("activerecord.attributes.script_sub_theme.start_num", :default => t("activerecord.labels.start_num", :default => "Start num")) + ":"
+%p= @script_sub_theme.start_num
+%label{:class => "label"}= t("activerecord.attributes.script_sub_theme.end_num", :default => t("activerecord.labels.end_num", :default => "End num")) + ":"
+%p= @script_sub_theme.end_num
+%label{:class => "label"}= t("activerecord.attributes.script_sub_theme.questions_to_pass", :default => t("activerecord.labels.questions_to_pass", :default => "Questions to pass")) + ":"
+%p= @script_sub_theme.questions_to_pass
+%label{:class => "label"}= t("activerecord.attributes.script_sub_theme.questions_count", :default => t("activerecord.labels.questions_count", :default => "Questions count")) + ":"
+%p= @script_sub_theme.questions_count
+%label{:class => "label"}= t("activerecord.attributes.script_sub_theme.order_questions", :default => t("activerecord.labels.order_questions", :default => "Order questions")) + ":"
+%p= @script_sub_theme.order_questions
+%label{:class => "label"}= t("activerecord.attributes.script_sub_theme.script_theme_id", :default => t("activerecord.labels.script_theme_id", :default => "Script theme")) + ":"
+%p= @script_sub_theme.script_theme_id
+
+.form-actions
+  = link_to "Back", script_sub_themes_path, :class => 'btn'
+  = link_to "Edit", edit_script_sub_theme_path(@script_sub_theme), :class => 'btn'
+  = link_to "Delete", script_sub_theme_path(@script_sub_theme), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-danger'

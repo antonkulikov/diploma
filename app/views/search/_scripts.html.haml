@@ -1,0 +1,27 @@
+%h2 Список сценариев
+
+%table{:class => "table table-striped table-bordered"}
+  %thead
+    %tr
+      %th= t "activerecord.attributes.script.name"
+      %th= t("activerecord.attributes.script.script_themes") + ' (' + t("activerecord.attributes.script.repository_themes") + ')'
+      %th= t "activerecord.attributes.script.script_subthemes"
+      - if @current_user && @current_user.admin?
+        %th.actions Действия
+  %tbody
+    - @scripts.each do |script|
+      %tr
+        %td= link_to script.name, script_path(script)
+        %td
+          - script.script_themes.each do |script_theme|
+            = script_theme.name + ' (' +script_theme.repository_theme.name + ')'
+            %br
+        %td
+          - script.script_themes.each do |script_theme|
+            - script_theme.script_sub_themes.each do |script_sub_theme|
+              = script_sub_theme.name
+              %br
+        - if @current_user && @current_user.admin?
+          %td.actions
+            = link_to "<i class='icon-edit'></i>".html_safe, edit_script_path(script), :class => 'btn btn-mini', 'rel' => 'tooltip', 'title' => 'Редактировать'
+            = link_to "<i class='icon-trash icon-white'></i>".html_safe, script_path(script), :method => :delete, :confirm => "#{ t "web-app-theme.confirm"}", :class => 'btn btn-mini btn-danger', 'rel' => 'tooltip', 'title' => 'Удалить'

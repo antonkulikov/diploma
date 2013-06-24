@@ -1,0 +1,13 @@
+.modal-header
+  = link_to '×', '', 'data-dismiss' => 'modal', :class => 'close'
+  %h3 Добавить тесты к блоку групп
+.modal-body
+  - examines = Examine.all
+  = form_tag add_examines_block_path(block), :method => 'post', :class => 'form-horizontal' do
+    - for examine in examines
+      .item
+        = check_box_tag 'examine_ids[]', examine.id, block.examines.include?(examine), :id => "block_examine_#{examine.id}"
+        = examine.name
+  
+    .modal-footer
+      = submit_tag "Добавить тесты", :class => 'btn btn-primary'

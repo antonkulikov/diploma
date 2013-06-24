@@ -1,0 +1,14 @@
+%span{:class => "label"}= t("activerecord.attributes.block.year") + ":"
+%p= @block.year
+%span{:class => "label"}= t("activerecord.attributes.block.discipline_id") + ":"
+%p= @block.discipline.name
+%span{:class => "label"}= t("activerecord.attributes.block.groups") + ":"
+%p= @block.groups.map(&:name).join(', ')
+%span{:class => "label"}= t("activerecord.attributes.block.block_num") + ":"
+%p= @block.block_num
+
+.form-actions
+  = link_to "Назад", blocks_path, :class => 'btn'
+  - if @current_user && @current_user.admin?
+    = link_to "Редактировать", edit_block_path(@block), :class => 'btn'
+    = link_to "Удалить", block_path(@block), :method => "delete", :confirm => "#{t "web-app-theme.confirm"}", :class => 'btn btn-danger'

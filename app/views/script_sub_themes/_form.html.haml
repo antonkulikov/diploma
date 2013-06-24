@@ -1,0 +1,35 @@
+%fieldset
+  %legend
+    = controller.action_name.capitalize
+    /Script Sub Theme
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :start_num, :class => 'control-label'
+    .controls
+      = f.number_field :start_num, :class => 'number_field'
+  .control-group
+    = f.label :end_num, :class => 'control-label'
+    .controls
+      = f.number_field :end_num, :class => 'number_field'
+  .control-group
+    = f.label :questions_to_pass, :class => 'control-label'
+    .controls
+      = f.number_field :questions_to_pass, :class => 'number_field'
+  .control-group
+    = f.label :questions_count, :class => 'control-label'
+    .controls
+      = f.number_field :questions_count, :class => 'number_field'
+  .control-group
+    = f.label :order_questions, :class => 'control-label'
+    .controls
+      = f.check_box :order_questions, :class => 'check_box'
+  .control-group
+    = f.label :script_theme_id, :class => 'control-label'
+    .controls
+      = f.number_field :script_theme_id, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Cancel", script_sub_themes_path, :class => 'btn'

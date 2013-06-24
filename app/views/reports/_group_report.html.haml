@@ -1,0 +1,15 @@
+%table{:class => 'table table-stripped table-condensed table-bordered'}
+  %thead
+    %tr
+      %th ФИО
+      - examines.each do |examine|
+        %th.min= examine.name
+  %thead
+    - students.each do |student|
+      %tr
+        %td= student.lastname + " " + student.name + " " + student.middlename
+        - examines.each do |examine|
+          - if rand(2) == 1
+            %td.yes= "<i class='icon-plus icon-white'></i>".html_safe
+          - else
+            %td.no= "<i class='icon-minus icon-white'></i>".html_safe

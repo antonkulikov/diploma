@@ -1,0 +1,18 @@
+%h1 Визуализатор отчетов
+
+%table{:class => 'table table-bordered'}
+  %thead
+    %tr
+      %th.left-row По дисциплине
+      %th.right-row По группе
+    %tr
+      %td
+        - @disciplines.each do |discipline|
+          = link_to discipline.name, show_reports_path(:discipline_id => discipline.id)
+          %br
+      %td
+        - @groups.each do |group|
+          = link_to group.name, show_reports_path(:group_id => group.id)
+          %br
+
+.free-space

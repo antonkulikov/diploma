@@ -1,0 +1,18 @@
+%table{:class => "table table-striped table-bordered"}
+  %thead
+    %tr
+      %th= t "activerecord.attributes.repository_theme.name"
+      %th= t "activerecord.attributes.repository_theme.path"
+      %th= t "activerecord.attributes.repository_theme.count"
+      %th.actions Действия
+  %tbody
+    - @repository_themes.each do |repository_theme|
+      %tr
+        %td= link_to repository_theme.name, examines_path(:repository_theme_id => repository_theme)
+        %td= repository_theme.path
+        %td= repository_theme.count
+        %td.actions
+          = link_to "<i class='icon-edit'></i>".html_safe, edit_repository_theme_path(repository_theme), :class => 'btn btn-mini', 'rel' => 'tooltip', 'title' => 'Редактировать'
+          = link_to "<i class='icon-trash icon-white'></i>".html_safe, repository_theme_path(repository_theme), :method => :delete, :confirm => "#{ t "web-app-theme.confirm" }", :class => 'btn btn-mini btn-danger', 'rel' => 'tooltip', 'title' => 'Удалить' 
+
+.free-space

@@ -1,0 +1,39 @@
+%fieldset.partial
+  %legend
+    Подтема
+    = link_to_remove_fields "Удалить", f
+  %table
+    %tbody
+      %tr
+        %td.first-row
+          .control-group
+            = f.label :name, "Название", :class => 'control-label'
+            .controls
+              = f.number_field :name, :class => 'number_field'
+        %td.second-row
+          .control-group
+            = f.label :start_num, "Начальный индекс вопросов", :class => 'control-label'
+            .controls
+              = f.number_field :start_num, :class => 'number_field'
+      %tr
+        %td
+          .control-group
+            = f.label :end_num, "Конечный индекс вопросов", :class => 'control-label'
+            .controls
+              = f.number_field :end_num, :class => 'number_field'
+        %td
+          .control-group
+            = f.label :questions_to_pass, "Необходимо сдать вопросов", :class => 'control-label'
+            .controls
+              = f.number_field :questions_to_pass, :class => 'number_field'
+      %tr
+        %td
+          .control-group
+            = f.label :questions_count, "Задать вопросов", :class => 'control-label'
+            .controls
+              = f.number_field :questions_count, :class => 'number_field'
+        %td
+          .control-group
+            = f.label :order_questions, "Сортировать вопросы", :class => 'control-label'
+            .controls
+              = f.check_box :order_questions, :class => 'check_box'

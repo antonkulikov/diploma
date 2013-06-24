@@ -1,0 +1,13 @@
+%fieldset
+  %legend
+    = t "controllers.#{controller_name}.#{action_name}"
+    - if @group.errors.any?
+      .alert.alert-error
+        %h6 При сохранении произошли ошибки
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Отмена", groups_path, :class => 'btn'

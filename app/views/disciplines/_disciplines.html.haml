@@ -1,0 +1,36 @@
+%table{:class => "table table-striped table-bordered"}
+  %thead
+    %tr
+      %th= t "activerecord.attributes.discipline.name"
+      %th= t "activerecord.attributes.discipline.blocks"
+      %th= t "activerecord.attributes.discipline.examines"
+      - if @current_user && @current_user.admin?
+        %th Действия
+  %tbody
+    - @disciplines.each do |discipline|
+      %tr
+        %td= link_to discipline.name, blocks_path(:discipline_id => discipline)
+        %td
+          - discipline.blocks.each_with_index do |block, index|
+            - i = block.groups.count
+            = "Блок #{index+1}:"
+            - block.groups.each do |group|
+              = link_to group.name, examines_path(:group_id => group)
+              - if i > 1
+                = ','
+              - i -= 1
+            %br
+        %td
+          - discipline.blocks.each do |block|
+            - i = block.examines.size
+            - block.examines.each do |examine|
+              = link_to examine.name, examine, :rel => 'tooltip', :title => "#{l examine.scheduled_date if examine.scheduled_date}"
+              - if i > 1
+                = ', '
+              - i -= 1
+            %br
+        
+        - if @current_user && @current_user.admin?
+          %td.actions
+            = link_to "<i class='icon-edit'></i>".html_safe, edit_discipline_path(discipline), :class => 'btn btn-mini', :rel => 'tooltip', :title => 'Редактировать'
+            = link_to "<i class='icon-trash icon-white'></i>".html_safe, discipline_path(discipline), :method => :delete, :confirm => "#{t "web-app-theme.confirm"}", :class => 'btn btn-mini btn-danger', 'my-rel' => 'tooltip', :title => 'Удалить'

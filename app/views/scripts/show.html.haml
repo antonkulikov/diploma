@@ -1,0 +1,44 @@
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.name") + ":"
+  %b= @script.name
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.redirect_page") + ":"
+  %b= @script.redirect_page
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.time") + ":"
+  %b= @script.time.to_s + " мин."
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.blocked") + ":"
+  %b= @script.blocked ? "Да" : "Нет"
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.order_themes") + ":"
+  %b= @script.order_themes ? "Да" : "Нет"
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.questions_to_pass") + ":"
+  %b= @script.questions_to_pass
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.themes_to_pass") + ":"
+  %b= @script.themes_to_pass
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.results") + ":"
+  %b= @script.results
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.examine_id") + ":"
+  %b= @script.examine.name if @script.examine
+%p
+  %span{:class => "label"}= t("activerecord.attributes.script.base_script_id", :default => t("activerecord.labels.base_script_id", :default => "Base script")) + ":"
+  %b= @script.base_script_id
+- unless @script.script_themes.blank?
+  %span{:class => "label", :style => 'margin-left: 25px;'} Темы:
+  - @script.script_themes.each do |theme|
+    %p{:style => 'margin-left: 25px;'}= theme.name
+    - unless theme.script_sub_themes.blank?
+      %span{:class => "label", :style => 'margin-left: 25px;'} Подтемы:
+      - theme.script_sub_themes.each do |sub_theme|
+        %p{:style => 'margin-left: 25px;'}= sub_theme.name
+
+.form-actions
+  = link_to "Назад", scripts_path, :class => 'btn'
+  - if @current_user && @current_user.admin?
+    = link_to "Редактировать", edit_script_path(@script), :class => 'btn'
+    = link_to "Удалить", script_path(@script), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Вы уверены?")}", :class => 'btn btn-danger'

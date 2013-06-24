@@ -1,0 +1,13 @@
+%h1 Дисциплины
+
+= form_tag disciplines_path, :class => 'well form-search', :method => 'get', :id => 'disciplines_search' do 
+  %fieldset
+    = text_field_tag :search, params[:search], :class => 'input-medium search-query'
+    = submit_tag 'Поиск', :name => nil, :class => 'btn'
+
+#disciplines= render 'disciplines'
+
+- if @current_user && @current_user.admin?
+  = link_to 'Новая дисциплина', new_discipline_path, :class => 'btn btn-primary'
+
+.free-space

@@ -1,0 +1,21 @@
+%h1 Блоки групп
+%table{:class => "table table-striped table-bordered"}
+  %thead
+    %tr
+      %th #
+      %th Блоки групп
+      %th Тесты
+      %th Сценарии
+  %tbody
+    - @subjects.each do |bloc, subjects|
+      %tr
+        %td.id= bloc
+        %td
+          - subjects.each do |subject|
+            = subject.group.name
+            %br
+          = link_to "<i class='icon-plus'></i>".html_safe, add_to_bloc_groups_path
+        %td
+        %td
+
+.free-space

@@ -1,0 +1,8 @@
+- if @examines.count == 0
+  $('#examines').html("");
+-else
+  $('#examines').html("#{escape_javascript render('examines')}");
+- if @scripts.count == 0
+  $('#scripts').html("");
+-else
+  $('#scripts').html("#{escape_javascript render('scripts')}");

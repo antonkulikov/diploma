@@ -1,0 +1,21 @@
+%fieldset
+  %legend
+    = t "controllers.#{controller_name}.#{action_name}"
+    - if @repository_theme.errors.any?
+      .alert.alert-error
+        %h6 При сохранении произошли ошибки
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :path, :class => 'control-label'
+    .controls
+      = f.text_field :path, :class => 'text_field'
+  .control-group
+    = f.label :count, :class => 'control-label'
+    .controls
+      = f.number_field :count, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Cancel", repository_themes_path, :class => 'btn'

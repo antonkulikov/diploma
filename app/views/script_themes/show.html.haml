@@ -1,0 +1,17 @@
+%label{:class => "label"}= t("activerecord.attributes.script_theme.name", :default => t("activerecord.labels.name", :default => "Name")) + ":"
+%p= @script_theme.name
+%label{:class => "label"}= t("activerecord.attributes.script_theme.repository_theme_id", :default => t("activerecord.labels.repository_theme_id", :default => "Repository theme")) + ":"
+%p= @script_theme.repository_theme_id
+%label{:class => "label"}= t("activerecord.attributes.script_theme.questions_to_pass", :default => t("activerecord.labels.questions_to_pass", :default => "Questions to pass")) + ":"
+%p= @script_theme.questions_to_pass
+%label{:class => "label"}= t("activerecord.attributes.script_theme.subthemes_to_pass", :default => t("activerecord.labels.subthemes_to_pass", :default => "Subthemes to pass")) + ":"
+%p= @script_theme.subthemes_to_pass
+%label{:class => "label"}= t("activerecord.attributes.script_theme.order_subthemes", :default => t("activerecord.labels.order_subthemes", :default => "Order subthemes")) + ":"
+%p= @script_theme.order_subthemes
+%label{:class => "label"}= t("activerecord.attributes.script_theme.script_id", :default => t("activerecord.labels.script_id", :default => "Script")) + ":"
+%p= @script_theme.script_id
+
+.form-actions
+  = link_to "Back", script_themes_path, :class => 'btn'
+  = link_to "Edit", edit_script_theme_path(@script_theme), :class => 'btn'
+  = link_to "Delete", script_theme_path(@script_theme), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-danger'

@@ -1,0 +1,21 @@
+%h1 Script Themes
+%table{:class => "table table-striped"}
+  %thead
+    %tr
+      %th ID
+      %th
+        = t("activerecord.attributes.script_theme.name", :default => t("activerecord.labels.name", :default => "Name"))
+      %th Created at
+      %th Actions
+  %tbody
+    - @script_themes.each do |script_theme|
+      %tr
+        %td= script_theme.id
+        %td= link_to script_theme.name, script_theme_path(script_theme)
+        %td= script_theme.created_at
+        %td
+          = link_to "Show", script_theme_path(script_theme), :class => 'btn btn-mini'
+          = link_to "Edit", edit_script_theme_path(script_theme), :class => 'btn btn-mini'
+          = link_to "Destroy", script_theme_path(script_theme), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-mini btn-danger' 
+
+= link_to "New", new_script_theme_path, :class => 'btn btn-primary'
