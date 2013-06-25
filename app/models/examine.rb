@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 class Examine < ActiveRecord::Base
-  attr_accessible :name, :necessary, :blocked, :num_try, :periodm, :test_type, :w_key, :ext_access, :msiu_access, :ordinal, :scheduled_date, :scheduled_pair
+  attr_accessible :name, :necessary, :blocked, :num_try, :period, :test_type, :w_key, :ext_access, :msiu_access, :ordinal, :scheduled_date, :scheduled_pair, :block_ids, :scripts_attributes
 
   default_scope order(:ordinal, :scheduled_date)
 
-  #before_create :assign_ordinal 
+  before_create :assign_ordinal
 
   has_and_belongs_to_many :blocks
   

@@ -9,8 +9,6 @@ class Block < ActiveRecord::Base
   
   validates_presence_of :year, :discipline_name
   
-  attr_reader :group_tokens
-  
   def discipline_name()
     discipline.name if discipline
   end
@@ -21,6 +19,9 @@ class Block < ActiveRecord::Base
   
   def group_tokens=(ids)
     self.group_ids = ids.split(",")
+  end
+
+  def group_tokens
   end
   
   private

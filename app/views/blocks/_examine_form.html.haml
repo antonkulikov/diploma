@@ -77,7 +77,7 @@
   = f.fields_for :scripts do |builder|
     = render "script", :f => builder
 
-  %div= link_to_add_fields "Добавить сценарий", f, :scripts
+  %div= f.link_to_add "Добавить сценарий", :scripts
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

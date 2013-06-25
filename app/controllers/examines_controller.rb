@@ -6,8 +6,8 @@ class ExaminesController < ApplicationController
       @repository_theme = RepositoryTheme.find(params[:repository_theme_id])
       @examines = Examine.includes(:scripts => [:script_themes => :repository_theme]).where('repository_themes.id = ?', params[:repository_theme_id])
     elsif params[:group_id]
-      @group = Group.unscoped.find(params[:group_id])
-      @disciplines = Discipline.unscoped.includes(:blocks => :groups).where(:blocks => {:groups => {:id => @group.id}})
+      @group = Group.find(params[:group_id])
+      @disciplines = Discipline.unscoped.includes(:blocks => :groups).where(:groups => {:id => @group.id})
     else
       @examines = Examine.all
     end
@@ -25,6 +25,9 @@ class ExaminesController < ApplicationController
 
   def new
     @examine = Examine.new
+    script = @examine.scripts.build
+    themes = script.script_themes.build
+    themes.script_sub_themes.build
   end
 
 
